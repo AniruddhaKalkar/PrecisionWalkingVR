@@ -8,7 +8,7 @@ public class Setting : MonoBehaviour
 {
 
     // toggle game objects
-    
+
     public Toggle Heightlevel1;
     public Toggle Heightlevel2;
     public Toggle Heightlevel3;
@@ -46,9 +46,17 @@ public class Setting : MonoBehaviour
     public static int numbObInput;
     public Slider Heightval;
     public static int Heightvalint;
+    public InputField path_width;
+    public InputField mistakeColliderWidth;
+    public static float pathObWidth;
+    public static float mistakeColliderObWidth;
+
     public ArrayList heightArray = new ArrayList();
     public ArrayList widthposArray = new ArrayList();
     //private GameObject go;
+    public GameObject pathOb;
+    public GameObject leftCollider;
+    public GameObject rightCollider;
     public GameObject settingpanel;
     public GameObject gamepanel;
 
@@ -73,9 +81,28 @@ public class Setting : MonoBehaviour
         Heightvalint = (int)Heightval.value;
     }
 
+    public void SetPathWidth()
+    {
+        pathObWidth = float.Parse(path_width.text);
+        Debug.Log(pathObWidth);
+        pathOb.transform.localScale = new Vector3(500.0f, 0.1f, pathObWidth);
+        Debug.Log("Floor Position");
+        Debug.Log(pathOb.transform.position);
+
+
+    }
+    public void SetMistakeCollidersWidth()
+    {
+        // mistakeColliderObWidth = float.Parse(mistakeColliderWidth.text);
+        Debug.Log("Left Collider Scale and Position");
+
+        Debug.Log(leftCollider.transform.localScale);
+        Debug.Log(leftCollider.transform.position);
+
+    }
     public void ActiveToggle()
     {
-        
+
         // height toggle
         if (Heightlevel1.isOn)
         {
@@ -118,11 +145,11 @@ public class Setting : MonoBehaviour
         }
         else if (Depthlevel2.isOn)
         {
-            PlayerPrefs.SetInt("ObDepth", 2);            
+            PlayerPrefs.SetInt("ObDepth", 2);
         }
         else if (Depthlevel3.isOn)
         {
-            PlayerPrefs.SetInt("ObDepth", 3);            
+            PlayerPrefs.SetInt("ObDepth", 3);
         }
 
         // color toggle
@@ -222,7 +249,7 @@ public class Setting : MonoBehaviour
         {
             PlayerPrefs.SetInt("DualTask", 3);
         }
-    }   
+    }
 
     public void Easy()
     {
@@ -236,10 +263,10 @@ public class Setting : MonoBehaviour
         // negotiation style toggle
         if (Stylelevel1.isOn)
         {
-            PlayerPrefs.SetInt("ObStyle", 1);            
+            PlayerPrefs.SetInt("ObStyle", 1);
             Heightvalint = 12;
             PlayerPrefs.SetInt("ObHeight", 1);
-            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);                        
+            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);
             PlayerPrefs.SetInt("ObColor", 1);
             PlayerPrefs.SetInt("Pathwidth", 1);
             PlayerPrefs.SetInt("ObDynamicPred", 1);
@@ -248,7 +275,7 @@ public class Setting : MonoBehaviour
             PlayerPrefs.SetInt("DualTask", 1);
         }
         else if (Stylelevel2.isOn)
-        {            
+        {
             PlayerPrefs.SetInt("ObStyle", 2);
             PlayerPrefs.SetInt("ObColor", 1);
             PlayerPrefs.SetInt("Pathwidth", 1);
@@ -264,7 +291,7 @@ public class Setting : MonoBehaviour
             Heightvalint = 12;
             PlayerPrefs.SetInt("Pathwidth", 1);
             PlayerPrefs.SetInt("ObHeight", 1);
-            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);            
+            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);
             PlayerPrefs.SetInt("ObDynamicPred", 1);
             PlayerPrefs.SetInt("ObAppearancePred", 1);
             PlayerPrefs.SetInt("Lighting", 1);
@@ -288,7 +315,7 @@ public class Setting : MonoBehaviour
         // negotiation style toggle
         if (Stylelevel1.isOn)
         {
-            PlayerPrefs.SetInt("ObStyle", 1);            
+            PlayerPrefs.SetInt("ObStyle", 1);
             Heightvalint = 12;
             PlayerPrefs.SetInt("ObHeight", 2);
             PlayerPrefs.SetInt("ObHeightnum", Heightvalint);
@@ -316,7 +343,7 @@ public class Setting : MonoBehaviour
             PlayerPrefs.SetInt("ObStyle", 3);
             Heightvalint = 12;
             PlayerPrefs.SetInt("ObHeight", 2);
-            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);            
+            PlayerPrefs.SetInt("ObHeightnum", Heightvalint);
             PlayerPrefs.SetInt("ObDynamicPred", 2);
             PlayerPrefs.SetInt("ObAppearancePred", 1);
             PlayerPrefs.SetInt("Lighting", 1);
@@ -387,9 +414,11 @@ public class Setting : MonoBehaviour
         Setspeed();
         SetNumber();
         SetHeight();
-        ActiveToggle();      
+        ActiveToggle();
+        SetPathWidth();
+        SetMistakeCollidersWidth();
         settingpanel.gameObject.SetActive(false);
-        gamepanel.gameObject.SetActive(true);        
+        gamepanel.gameObject.SetActive(true);
     }
 
 

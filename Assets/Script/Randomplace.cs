@@ -294,9 +294,9 @@ public class Randomplace : MonoBehaviour
                 GameObject path2 = Instantiate(pathob, pathposition2, Quaternion.identity) as GameObject;
                 path1.transform.parent = GameObject.Find("Objects").transform;
                 path2.transform.parent = GameObject.Find("Objects").transform;
-                Debug.Log(path_positionx);
-                Debug.Log(pathposition1);
-                Debug.Log(pathposition2);
+                // Debug.Log(path_positionx);
+                // Debug.Log(pathposition1);
+                // Debug.Log(pathposition2);
             }
         }
 
