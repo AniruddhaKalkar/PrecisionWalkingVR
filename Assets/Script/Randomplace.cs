@@ -119,11 +119,24 @@ public class Randomplace : MonoBehaviour
             }
 
             // set position
+
             float position = (Random.Range(-10.0f, -5.1f)) - 10;
-            Vector3 Obposition = new Vector3(position, obheights / 2f, obwidthposition);
+            float positiony = Random.Range(5.0f, 14.0f) / 10;
+            float multiplier = Random.Range(0, 2) * 2 - 1;
+            float positionz;
+            if (multiplier > 0)
+            {
+                positionz = Random.Range(20.0f, 27.0f) / 10;
+            }
+            else
+            {
+                positionz = Random.Range(10.0f, 50.0f) / 100;
+            }
+            Vector3 Obposition = new Vector3(position, positiony, positionz);
 
             // instantiate obstacles
             GameObject go = Instantiate(prefab, Obposition, Quaternion.identity) as GameObject;
+
             go.GetComponent<MoveObstacle>().startpos = Obposition;
 
             // change color
@@ -167,8 +180,10 @@ public class Randomplace : MonoBehaviour
             }
 
             // set position
+            obwidthposition = 2f;
+            obheights = 4f;
             float position = (Random.Range(-10.0f, -5.1f)) - 10;
-            Vector3 Obposition = new Vector3(position, 0.02f / 2, obwidthposition);
+            Vector3 Obposition = new Vector3(position, 1.5f, 2.2f);
 
             // instantiate obstacles
             GameObject go = Instantiate(target, Obposition, Quaternion.identity) as GameObject;
@@ -232,8 +247,10 @@ public class Randomplace : MonoBehaviour
             }
 
             // set position
+            obwidthposition = 2f;
+            obheights = 4f;
             float position = (Random.Range(-10.0f, -5.1f)) - 10;
-            Vector3 Obposition = new Vector3(position, obheights / 2f, obwidthposition);
+            Vector3 Obposition = new Vector3(position, 1.1f, 3f);
 
             // instantiate obstacles
             GameObject go = Instantiate(prefab, Obposition, Quaternion.identity) as GameObject;
@@ -256,7 +273,6 @@ public class Randomplace : MonoBehaviour
         }
 
         // place path obstacle
-        Debug.Log(pathwidth);
         if (pathwidth == 2)
         {
             for (int i = 1; i < 30 + 1; i++)
@@ -288,15 +304,13 @@ public class Randomplace : MonoBehaviour
             for (int i = 1; i < 30 + 1; i++)
             {
                 float path_positionx = (Random.Range(-40.0f, -30.1f)) - 15 * i;
-                Vector3 pathposition1 = new Vector3(path_positionx, 0.75f, 2.5f);
-                Vector3 pathposition2 = new Vector3(path_positionx, 0.75f, 0.3f);
+                Vector3 pathposition1 = new Vector3(path_positionx, 20f, 5f);
+                Vector3 pathposition2 = new Vector3(path_positionx, 20f, 6f);
                 GameObject path1 = Instantiate(pathob, pathposition1, Quaternion.identity) as GameObject;
                 GameObject path2 = Instantiate(pathob, pathposition2, Quaternion.identity) as GameObject;
                 path1.transform.parent = GameObject.Find("Objects").transform;
                 path2.transform.parent = GameObject.Find("Objects").transform;
-                // Debug.Log(path_positionx);
-                // Debug.Log(pathposition1);
-                // Debug.Log(pathposition2);
+
             }
         }
 

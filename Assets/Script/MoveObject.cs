@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveObject : MonoBehaviour {
+public class MoveObject : MonoBehaviour
+{
 
     //public float speed;    
     private bool hasStarted = false;
     public GameObject tracker;
     public float speed = 1;
+    public GameObject floor;
 
     void Start()
     {
-        speed = PlayerPrefs.GetFloat("TreadmillInput")/2.23694f;
+        speed = PlayerPrefs.GetFloat("TreadmillInput") / 2.23694f;
+
     }
 
     void Update()
@@ -21,14 +24,14 @@ public class MoveObject : MonoBehaviour {
             transform.Translate(Vector2.right * Time.deltaTime * speed);
             hasStarted = true;
         }
-    }  
-    
+    }
+
     public void TaskOnClick()
     {
         hasStarted = true;
-        
+
     }
-    
+
     public void Pause()
     {
         hasStarted = false;
